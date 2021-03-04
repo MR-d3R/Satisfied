@@ -78,9 +78,6 @@ body {
 
 .profile.content-top-bar__profile-link,
 .upgrade-button,
-.view-player .remote-playback-bar {
-  display: none !important;
-}
 
 /*Thinner scrollbar*/
 
@@ -367,10 +364,6 @@ body {
   flex: 0 1 10px;
 }
 
-#view-now-playing a.image {
-  overflow: visible !important;
-}
-
 /* Profile arrow in top left */
 
 .content-top-bar__profile-menu-button .dropdown {
@@ -589,10 +582,6 @@ body:not(.body-container--windows)
 
 .glue-page-header__label .header-verified-check {
   background-color: transparent;
-}
-
-body.remotebar .view-player .player-bar-wrapper {
-  height: 100%;
 }
 
 .Header__image-inner {
@@ -1046,34 +1035,12 @@ select {
 
 /*Force player bar to has fixed height*/
 
-.view-player {
-  height: var(--bar-height) !important;
-  border-top: 0;
-  padding: 0 15px;
-  width: calc(100% - var(--sidebar-width) - var(--main-gap));
-  position: absolute;
-  bottom: var(--main-gap);
-  left: var(--sidebar-width);
-  border-radius: 0 0 var(--main-corner-radius) var(--main-corner-radius);
-  z-index: 2;
-  /* Glowing effect */
-  background: radial-gradient(
-    ellipse at right 50% bottom -80px,
-    rgba(var(--modspotify_rgb_main_bg), 0.45),
-    var(--modspotify_main_bg) 70%
-  );
-}
-
 body.video-full-screen .view-player {
   left: 0;
   width: 100%;
 }
 
 /* Player Progress bar */
-
-.view-player .now-playing {
-  overflow: unset;
-}
 
 .view-player .now-playing-container .button-add {
   color: var(--modspotify_main_fg) !important;
@@ -1098,22 +1065,6 @@ body.video-full-screen .view-player {
   height: 6px;
 }
 
-.view-player .player-controls-container .progress-container {
-  position: fixed;
-  width: calc(100% - var(--sidebar-width) - var(--main-gap));
-  bottom: calc(var(--bar-height) + var(--main-gap));
-  margin: 0;
-  left: var(--sidebar-width);
-}
-
-body.video-full-screen
-  .view-player
-  .player-controls-container
-  .progress-container {
-  width: 100%;
-  left: 0;
-}
-
 .progress-container .inner {
   background-color: var(--modspotify_main_fg) !important;
 }
@@ -1125,55 +1076,6 @@ body.video-full-screen
 
 /* Player Control buttons */
 
-.view-player .player-controls-container {
-  text-align: left;
-  flex: 1 1;
-  order: 0;
-  min-width: 220px;
-}
-
-.view-player .player-bar-spacer {
-  display: none;
-}
-
-.view-player .now-playing-container {
-  flex: 2 1;
-  order: 2;
-  min-width: 0;
-  max-width: none !important;
-}
-
-.view-player .now-playing-container .caption {
-  align-items: center;
-  justify-content: center;
-  font-family: var(--info-font-family);
-}
-
-.view-player .track {
-  letter-spacing: 0;
-}
-
-.view-player .track a {
-  color: var(--modspotify_secondary_fg);
-  font-weight: 500;
-}
-
-.view-player .text-container .text-item-container-track {
-  height: 20px;
-}
-
-.view-player .now-playing-container .caption .text-container,
-.view-player .now-playing .cover-image-link-wrapper {
-  flex: unset;
-}
-
-.view-player .extra-controls-container {
-  flex: 1 1;
-  order: 3;
-  padding-right: 0;
-  min-width: 220px;
-}
-
 @media (max-width: 900px) {
   #video-fullscreen-button {
     display: none;
@@ -1184,11 +1086,6 @@ body.video-full-screen
   .view-player .player-controls-container .button {
     margin: 2px;
   }
-}
-
-.view-player .player-controls-container .controls {
-  margin-top: 4px;
-  display: flex;
 }
 
 button#player-button-previous {
@@ -1205,36 +1102,8 @@ button#player-button-play {
 
 button#player-button-shuffle,
 #player-button-thumbs-down,
-.view-player button[data-interaction-intent="skip-back"] {
-  order: 4;
-}
-
 button#player-button-repeat,
 #player-button-thumbs-up,
-.view-player button[data-interaction-target="skip-forward-button"] {
-  order: 5;
-}
-
-.view-player .player-controls-container .controls .button-repeat.active,
-.view-player .player-controls-container .controls .button-shuffle.active,
-.view-player .player-controls-container .controls .button-thumbs-down.active,
-.view-player .player-controls-container .controls .button-thumbs-up.active {
-  color: var(--modspotify_active_control_fg);
-}
-
-.view-player .player-controls-container .controls .button-play,
-.view-player .player-controls-container .controls .button-play:after {
-  box-shadow: unset !important;
-  border-radius: 0 !important;
-  width: 35px;
-  height: 35px;
-}
-
-.view-player .player-controls-container .controls .button-play:before {
-  font-size: 35px !important;
-  border-radius: 0 !important;
-  padding-left: 0 !important;
-}
 
 /* Player cover art */
 
@@ -1292,15 +1161,6 @@ button#player-button-repeat,
 }
 
 /* Volume bar */
-
-.view-player
-  .extra-controls-container
-  .volumebar-container
-  .progress-bar-wrapper.active
-  .inner,
-.view-player .extra-controls-container .volumebar-container:hover .inner {
-  background-color: var(--modspotify_sidebar_indicator_and_hover_button_bg);
-}
 
 /* Search page */
 
@@ -1624,4 +1484,317 @@ button[data-button="add-recommendation"] {
 .SearchInput__input:focus,
 .SearchInput__input:hover {
   background-color: rgba(var(--modspotify_rgb_main_fg), 0.05);
+}
+
+/* PLAY AREA EDITS */
+/*main frame*/
+#view-player {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.view-player,
+body.remotebar .view-player .player-bar-wrapper {
+  height: 85px !important;
+  border-radius: 20px !important;
+  background: var(--modspotify_main_bg_second) !important;
+  position: relative;
+  padding-left: 2px !important;
+  padding-right: 2px !important;
+}
+/*buttons and play progress*/
+.view-player .player-controls-container .controls .button-play {
+  height: 35px !important;
+  width: 35px !important;
+  border-radius: 40px !important;
+  box-shadow: 0 0 0 0 !important;
+  transition: none 0.3s cubic-bezier(0.3, 0, 0.7, 1);
+  overflow: visible !important;
+}
+
+.view-player .player-controls-container .controls .button-play:before {
+  padding-left: 0 !important;
+  padding-top: 1px !important;
+}
+
+.view-player .player-controls-container .controls {
+  margin-top: -14px !important;
+}
+
+.view-player .player-controls-container .progress-container {
+  margin-top: 2px !important;
+}
+
+.view-player .player-controls-container .controls .button-play:after {
+  box-shadow: unset !important;
+}
+
+.view-player .now-playing .cover-image-container .cover-image {
+  border-radius: 6px;
+}
+
+.view-player
+  .text-container
+  .text-item-container
+  .text-item
+  .scroll-text-container:after {
+  background: #282828 !important;
+  right: 0;
+}
+/* BROWSE TAB EDITS */
+/* Add round corner for Gerne and Mood cards */
+.gc-image,
+.gc-image-container {
+  border-radius: 10px !important;
+}
+
+.gc-label-text {
+  color: var(--modspotify_primary_text);
+}
+/* FULL SCREEN MODE EDITS */
+#view-player .album-art .album-art__image {
+  border-radius: 30px !important;
+  box-shadow: 0 10px 70px
+    rgba(var(--modspotify_rgb_cover_overlay_and_shadow), 0.5) !important;
+}
+
+#view-player .album-art .album-art__image .card-image-content-wrapper,
+#view-player
+  .album-art
+  .album-art__image
+  .card-image-content-wrapper
+  .card-image {
+  border-radius: 30px !important;
+}
+
+#video-player .album-art__foreground {
+  flex-direction: row;
+  text-align: left;
+}
+
+#video-player .album-art__background {
+  background-color: initial;
+}
+
+#video-player .album-art__track-details {
+  padding-left: 40px;
+  line-height: initial;
+}
+
+#video-player .album-art__track-title {
+  font-size: 80px;
+  margin-top: 0;
+  line-height: initial;
+}
+
+#video-player .album-art__artist-name {
+  font-size: 50px;
+  margin-top: 0;
+  line-height: initial;
+}
+/* PROGRESS BAR EDITS */
+.progress-container .inner {
+  border-radius: 50px !important;
+  background-color: var(--modspotify_main_fg) !important;
+}
+
+.progress-bar,
+.progress-bar .inner {
+  background: #3b3b3b;
+  border-radius: 100px;
+}
+
+.progress-container .inner,
+.progress-container .progress-bar {
+  border-radius: 100px !important;
+  height: 4.5px;
+}
+
+.progress-container {
+  border-radius: 100px !important;
+  position: absolute !important;
+  right: 25%;
+  width: 50% !important;
+}
+/* INSIDE THE ALBUM AND PLAYLIST EDITS */
+/*album edits*/
+.Button__alt-text,
+.Button__text {
+  color: var(--modspotify_primary_text) !important;
+}
+
+.Button--style-green {
+  font-size: 14px;
+}
+
+.TableCell--is-emphasized {
+  color: var(--modspotify_primary_text) !important;
+}
+/*playlist edits*/
+.b-add-text,
+.b-added-text,
+.b-pause-text,
+.b-play-text,
+.b-remove-text {
+  color: var(--modspotify_primary_text) !important;
+}
+
+.tl-highlight {
+  color: var(--modspotify_primary_text) !important;
+}
+
+/*Lift up cover when hovering on it*/
+.card-image-content-wrapper,
+.Card:not(.Card--artist) .Card__image-wrapper {
+  transition-property: transform, box-shadow !important;
+  transition-duration: 1s !important;
+  transition-timing-function: cubic-bezier(0.3, 0, 0, 1) !important;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-image-hit-area:not(.no-hover):hover .card-image-content-wrapper,
+.Card:not(.Card--artist)
+  .Card__image-hit-area-counter-scale:hover
+  .Card__image-wrapper {
+  transform: translateY(-100px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar:hover .sidebar-navbar.sidebar-scroll-element {
+  opacity: 1 !important;
+}
+
+.SidebarListItem--is-active:after,
+.RootlistItem--is-active:after,
+/* For Linux */ #view-navigation-bar .item.active:after {
+  background-color: transparent;
+  background-image: linear-gradient(
+    90deg,
+    var(--modspotify_sidebar_indicator_and_hover_button_bg),
+    transparent
+  );
+  opacity: 0.2;
+  bottom: unset;
+  top: 5%;
+  height: 90%;
+  width: 100%;
+}
+
+.sidebar:hover {
+  width: var(--left-sidebar-width) !important;
+  min-width: 100px !important;
+  opacity: 1;
+}
+
+.nav.navbar-nav a::after {
+  bottom: 0px !important;
+  width: 100% !important;
+}
+
+.nav.navbar-nav .active a::after {
+  box-shadow: 0 0px 20px !important;
+}
+
+.nav.navbar-nav a:focus:not(.button):active::after {
+  background-color: var(--modspotify_pressing_fg) !important;
+}
+
+.SidebarListItem--is-active:after,
+.RootlistItem--is-active:after,
+/* For Linux */ #view-navigation-bar .item.active:after {
+  background-color: transparent;
+  background-image: linear-gradient(
+    90deg,
+    var(--modspotify_sidebar_indicator_and_hover_button_bg),
+    transparent
+  );
+  opacity: 0.2;
+  bottom: unset;
+  top: 5%;
+  height: 90%;
+  width: 100%;
+}
+
+.nav.navbar-nav a::after {
+  bottom: 0px !important;
+  width: 100% !important;
+}
+
+.nav.navbar-nav .active a::after {
+  box-shadow: 0 0px 20px !important;
+}
+
+.nav.navbar-nav a:focus:not(.button):active::after {
+  background-color: var(--modspotify_pressing_fg) !important;
+}
+
+.SidebarListItem--is-active:after,
+.RootlistItem--is-active:after,
+/* For Linux */ #view-navigation-bar .item.active:after {
+  background-color: transparent;
+  background-image: linear-gradient(
+    90deg,
+    var(--modspotify_sidebar_indicator_and_hover_button_bg),
+    transparent
+  );
+  opacity: 0.2;
+  bottom: unset;
+  top: 5%;
+  height: 90%;
+  width: 100%;
+}
+
+.sidebar:hover .sidebar-navbar.sidebar-scroll-element {
+  opacity: 1 !important;
+}
+
+.SidebarListItem--is-active:after,
+.RootlistItem--is-active:after,
+/* For Linux */ #view-navigation-bar .item.active:after {
+  background-color: transparent;
+  background-image: linear-gradient(
+    90deg,
+    var(--modspotify_sidebar_indicator_and_hover_button_bg),
+    transparent
+  );
+  opacity: 0.2;
+  bottom: unset;
+  top: 5%;
+  height: 90%;
+  width: 100%;
+}
+
+.sidebar .sidebar-navbar.sidebar-scroll-element {
+  padding-top: 30px !important;
+  padding-bottom: 60px !important;
+  opacity: 0 !important;
+  transition-property: opacity !important;
+  transition-duration: 0.5s !important;
+  transition-timing-function: cubic-bezier(0.3, 0, 0, 1) !important;
+}
+
+.sidebar {
+  width: 15px !important;
+  min-width: 15px !important;
+  transition-duration: 0.5s !important;
+  transition-timing-function: cubic-bezier(0.3, 0, 0, 1) !important;
+  opacity: 0;
+}
+
+.sidebar:hover {
+  width: var(--left-sidebar-width) !important;
+  min-width: 100px !important;
+  opacity: 1;
+}
+
+.card-image-hit-area:hover .card-hit-area-counter-scale {
+  background: rgba(
+    var(--modspotify_rgb_cover_overlay_and_shadow),
+    0.6
+  ) !important;
+  transition-property: all !important;
+  transition-duration: 1s !important;
+  transition-timing-function: cubic-bezier(0.3, 0, 0, 1) !important;
+  opacity: 1 !important;
 }
